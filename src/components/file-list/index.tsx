@@ -2,19 +2,22 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import { MdCheckCircle, MdError, MdLink } from 'react-icons/md';
 import { UploadedFile } from '../../context/UploadContext';
 
-import { Container, FileInfo, Preview } from './styles';
+import * as S from './styles';
 
 type Props = {
 	files: UploadedFile[];
 	onDelete: (id: string) => void;
 };
+
+//Todo: não esquecer de limpar o preview das imagens no browser
+//uploadedFiles.forEach(file => URL.revokeObjectURL(file.preview));
 const FileList = ({ files, onDelete }: Props) => {
 	return (
-		<Container>
+		<S.Container>
 			{files.map(uploadedFile => (
-				<li key={uploadedFile.id}>
-					<FileInfo>
-						<Preview src={uploadedFile.preview} />
+				<S.ListItem key={uploadedFile.id}>
+					<S.FileInfo>
+						<S.Preview src={uploadedFile.preview} />
 						<div>
 							<strong>{uploadedFile.name}</strong>
 							<span>
@@ -24,7 +27,7 @@ const FileList = ({ files, onDelete }: Props) => {
 								)}
 							</span>
 						</div>
-					</FileInfo>
+					</S.FileInfo>
 
 					<div>
 						{!uploadedFile.uploaded && !uploadedFile.error && (
@@ -47,9 +50,9 @@ const FileList = ({ files, onDelete }: Props) => {
 						{uploadedFile.uploaded && <MdCheckCircle size={24} color='#78e5d5' />}
 						{uploadedFile.error && <MdError size={24} color='#e57878' />}
 					</div>
-				</li>
+				</S.ListItem>
 			))}
-		</Container>
+		</S.Container>
 	);
 };
 

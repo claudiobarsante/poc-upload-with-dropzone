@@ -5,17 +5,18 @@ type PreviewProps = {
 };
 export const Container = styled.ul`
 	margin-top: 20px;
+`;
 
-	li {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		color: #444;
+export const ListItem = styled.li`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 
-		& + li {
-			// -- a partir do 2o <li>
-			margin-top: 15px;
-		}
+	color: #444;
+
+	& + li {
+		// -- a partir do 2o <li>
+		margin-top: 15px;
 	}
 `;
 
@@ -44,8 +45,8 @@ export const FileInfo = styled.div`
 `;
 
 export const Preview = styled.div<PreviewProps>`
-	width: 36px;
-	height: 36px;
+	width: 100px;
+	height: 100px;
 	border-radius: 5px;
 	background-image: url(${props => props.src});
 	background-repeat: no-repeat;
